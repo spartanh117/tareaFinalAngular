@@ -1,0 +1,23 @@
+<app-seleccionador-estilos></app-seleccionador-estilos>
+
+<form [formGroup]="loginForm" class="form-group"> 
+    <div class="card">
+        <div class="card-body"> 
+            <h4 class="card-title">Iniciar Sesion</h4>   
+          <div class="form-group"> 
+            <div [ngClass]="{'invalid': loginForm.controls.user.invalid}">  
+              <input type="text" class="form-control" formControlName="user" placeholder="Usuario">
+            </div>
+            <div class="form-control-feedback" *ngIf="loginForm.controls.user.invalid">Este campo es obligatorio</div>
+          </div>
+            
+          <div class="form-group">
+            <div [ngClass]="{'invalid': loginForm.controls.password.invalid && loginForm.controls.password.dirty}">  
+            <input type="text" class="form-control" formControlName="password" placeholder="Contraseña">
+            </div>
+            <div class="form-control-feedback" *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.dirty">Este campo es obligatorio y debetener una longitud minima de 6</div>
+          </div>   
+          <button  type="button" (click)="login()" [ngClass]="{'btn-primary': this.servicio.getEstilo(), 'btn-danger': !this.servicio.getEstilo()}" [disabled]="loginForm.controls.user.invalid || loginForm.controls.password.invalid">iniciar sesion</button> 
+        </div>
+      </div>
+  </form>

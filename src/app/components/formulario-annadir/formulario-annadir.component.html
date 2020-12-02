@@ -1,0 +1,22 @@
+<form [formGroup]="addForm" class="form-group"> 
+    <div class="card">
+        <div class="card-body"> 
+            <h4 class="card-title">Nueva Entrada</h4>   
+          <div class="form-group"> 
+            <div [ngClass]="{'invalid':addForm.controls.titulo.invalid}">  
+              <input type="text" class="form-control" formControlName="titulo" placeholder="titulo">
+            </div>
+            <div class="form-control-feedback" *ngIf="addForm.controls.titulo.invalid">Este campo es obligatorio</div>
+          </div>
+          
+          <div class="form-group">
+            <div [ngClass]="{'invalid': addForm.controls.contenido.invalid}">  
+            <input type="text" class="form-control" formControlName="contenido" placeholder="contenido">
+            </div>
+            <div class="form-control-feedback" *ngIf="addForm.controls.contenido.invalid">Este campo es obligatorio</div>
+          </div>
+            
+          <button type="button" (click)="crearEntrada()" [ngClass]="{'btn-primary': this.servicio.getEstilo(), 'btn-danger': !this.servicio.getEstilo()}" [disabled]="addForm.controls.titulo.invalid || addForm.controls.contenido.invalid">Crear entrada</button> 
+        </div>
+      </div>
+  </form>
